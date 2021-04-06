@@ -1,27 +1,40 @@
-time = input('Введите время в секундах')
-sec = int(time)
-minute = int(time) / 60
-hour = int(time) / 3600
-day = int(time) / 86400
-month = int(time) / 2592000
-if int(time) >= 60:
-    sec = int(time) % 60
+time = int(input('Введите время в секундах'))
+
+second = time % 60
+minute = time % 3600 // 60
+hour = time % 86400 // 3660
+day = time % 2592000 // 86400
+month = time % 31104000 // 2592000
+year = int(time / 31104000)
+
+if second == 0:
+   second = ''
 else:
-    sec = int(time)
-if int(time) >= 60 and int(time) < 3600:
-    minute = int(time) / 60
+    second = f'{second} сек '
+
+if minute == 0:
+   minute = ''
 else:
-    minute = 0
-if int(time) >= 3600 and int(time) < 86400:
-    hour = int(time) / 3600
+    minute = f'{minute} мин '
+
+if hour == 0:
+   hour = ''
 else:
-    hour = 0
-if int(time) >= 86400 and int(time) < 2592000:
-    day = int(time) / 86400
+    hour = f'{hour} час '
+
+if day == 0:
+   day = ''
 else:
-    day = 0
-if int(time) >= 2592000:
-    month = int(time) / 2592000
+    day = f'{day} день '
+
+if month == 0:
+   month = ''
 else:
-    month = 0
-print(int(month), 'месяц', (day), 'день', int(hour), 'час', int(minute), 'минута', sec, 'секунда')
+    month = f'{month} мес '
+
+if year == 0:
+   year = ''
+else:
+    year = f'{year} год '
+
+print(f'{year}{month}{day}{hour}{minute}{second}')
